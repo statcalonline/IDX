@@ -189,7 +189,7 @@ modul_IDX_server <- function(input, output, session) {
       
       
       checkboxGroupInput(session$ns("terpilih_variabel_sektor_teknologi"), 
-                         label="Select Variables:", choices = c( kirim_nama_kolom_sektor_teknologi()), selected=c("Sector", "Board", "Code", "Company", "Year", "High", "Low", "Close", "Volume (th.share)"), inline = TRUE)
+                         label="Select Variables:", choices = c( kirim_nama_kolom_sektor_teknologi()), selected=c("Sector", "Board", "Code", "Company", "Year", "Total Asset", "Total Liabilities", "Total Equity" ,"High", "Low", "Close", "Volume (th.share)"), inline = TRUE)
       
       
       
