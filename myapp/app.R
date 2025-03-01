@@ -50,6 +50,7 @@ modul_IDX_ui <- function(id) {
  
  uiOutput(ns("keterangan_sektor_teknologi")),  
  uiOutput(ns("buka_variabel_sektor_technology")),
+ 
  #uiOutput(ns("buka_data_sektor_technology")),
  DT::DTOutput(ns("buka_data_sektor_technology")),
  
@@ -104,7 +105,7 @@ modul_IDX_ui <- function(id) {
       "Paired t-Test, Wilcoxon Test & Sign Test",
       "Pearson, Spearman & Kendall Correlation",
       "Friedman Test"),
-                       selected=c("Partial Least Squares Structural Equation Modeling (PLS-SEM)"), inline = FALSE),    
+                       selected=c("Partial Least Squares Structural Equation Modeling (PLS-SEM)"), inline = TRUE),    
           
           
           
@@ -114,8 +115,12 @@ modul_IDX_ui <- function(id) {
           
           
           
-          
-          
+          br(),
+      
+      
+      uiOutput(ns("keterangan_aplikasi_pls_sem")),  
+      uiOutput(ns("buka_checkbox_plssem")),
+      DT::DTOutput(ns("buka_data_aplikasi_pls_sem")),
           
           
           
@@ -350,10 +355,6 @@ modul_IDX_server <- function(input, output, session) {
   
   
   
-  
-  
-  
-  
   ###########
   
   
@@ -391,6 +392,141 @@ modul_IDX_server <- function(input, output, session) {
   
   
   
+  
+  
+  
+  
+  
+  #############################################################
+  ######################Aplikasi PLS-SEM#######################
+  #############################################################
+  
+  
+  kirim_nama_variabel_plssem <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi PLSSEM pada Data IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    return(nama)
+    
+    
+    
+  }
+  
+  
+  
+  output$keterangan_aplikasi_pls_sem <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Partial Least Squares Structural Equation Modeling (PLS-SEM)")
+    {
+      
+      h2("Application of PLS-SEM in IDX Data", style="
+         font-family: 'cursive';
+         color: blue;
+         text-align:center
+         ")
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  
+  
+  output$buka_data_aplikasi_pls_sem <- DT::renderDT({
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Partial Least Squares Structural Equation Modeling (PLS-SEM)")
+    {
+      dat <- data_seleksi_pls_sem()
+      print(dat)
+      
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  data_seleksi_pls_sem <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi PLSSEM pada Data IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    
+    
+    terpilih_variabel <- input$terpilih_variabel_aplikasi_pls_sem
+    
+    dat_kirim = dat[c(terpilih_variabel)]
+    
+    return(dat_kirim)
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  output$buka_checkbox_plssem <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Partial Least Squares Structural Equation Modeling (PLS-SEM)")
+    {
+      # print("cek")
+      #print(cek)
+      #print(cek)
+      # uiOutput(session$ns("buka_topik_psikologi"))
+      
+      
+      
+      
+      
+      checkboxGroupInput(session$ns("terpilih_variabel_aplikasi_pls_sem"), 
+                         label="Select Variables:", 
+                         choices = c(kirim_nama_variabel_plssem()),
+                selected=c("Journal or Conference", "Title", "Author(s)", "Year", "Software", "Outer Loading", 
+                          "Average Variance Extracted (AVE)", "Cronbach's Alpha (CA)", "Composite Reliability (CR)"), inline = TRUE)
+      
+      
+      
+      
+      
+      
+      
+      
+    }
+    
+    
+    
+  }) #buka_pilih_topik
   
   
   
