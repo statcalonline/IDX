@@ -1,6 +1,8 @@
 setwd("D:/STATCAL VERSI ONLINE/STATCAL FOR IDX/aplikasi")
 
 
+
+
 https://www.youtube.com/watch?v=B3Nggr9X4rY
 
 

@@ -31,6 +31,14 @@ modul_IDX_ui <- function(id) {
   fluidPage(
     
     
+    
+    tabsetPanel(
+      
+      tabPanel(title = tags$h5( tags$img(src = "dataset.png", width = "30px"), 'Dataset'),
+               
+               
+    
+    
       radioButtons(ns("pilih_sektor"),
                    label="Choose Sector:", 
                    choices = c("Healthcare", "Basic Materials", "Financials", "Transportation & Logistic", "Technology", "Consumer Non-Cyclicals", "Industrials", "Energy", "Consumer Cyclicals", "Infrastructures", "Properties & Real Estate"),
@@ -48,7 +56,80 @@ modul_IDX_ui <- function(id) {
                
                
                
-               
+               br()
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      ),
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ tabPanel(title = tags$h5( tags$img(src = "data analysis.png", width = "30px"), 'Data Analysis with IDX Data'),
+          
+          
+          
+          radioButtons(ns("pilih_metode"),
+                       label="Choose Method:", 
+                       choices = c("Regression", 
+      "Panel Data Regression", 
+      "Covariance Based Structural Equation Modeling (CB-SEM)", 
+      "Path Analysis", 
+      "Discriminant Analysis", 
+      "Conjoint Analysis", 
+      "Analysis of Covariance (ANCOVA)", 
+      "Partial Least Squares Structural Equation Modeling (PLS-SEM)", 
+      "Two State Least Squares (2SLS)", 
+      "Logistic Regression", 
+      "Autoregressive Integrated Moving Average (ARIMA)", 
+      "Autoregressive Conditional Heteroscedastic (ARCH) & Autoregressive Generalized Conditional Heteroscedastic (GARCH)",
+      "Vector Autoregressive (VAR) & Vector Error Correction Model (VECM)",
+      "Independent t-Test & Mann-Whitney Test",
+      "Analysis of Variance & Kruskal-Wallis Test",
+      "Multivariate Analysis of Variance (MANOVA)",
+      "Paired t-Test, Wilcoxon Test & Sign Test",
+      "Pearson, Spearman & Kendall Correlation",
+      "Friedman Test"),
+                       selected=c("Partial Least Squares Structural Equation Modeling (PLS-SEM)"), inline = FALSE),    
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          br()
+          
+          
+          
+ ) #tabpanel Data Analysis with IDX Data
+ 
+ 
+ 
+ 
+    ), #Akhir tabsetpanel
                
                
                
