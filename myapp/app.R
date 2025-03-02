@@ -123,6 +123,11 @@ modul_IDX_ui <- function(id) {
       DT::DTOutput(ns("buka_data_aplikasi_pls_sem")),
           
           
+      
+      uiOutput(ns("keterangan_aplikasi_panel_data_regression")),  
+      uiOutput(ns("buka_checkbox_panel_data_regression")),
+      DT::DTOutput(ns("buka_data_aplikasi_panel_data_regression")),
+      
           
           
           br()
@@ -526,7 +531,228 @@ modul_IDX_server <- function(input, output, session) {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
   }) #buka_pilih_topik
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ###############################################
+  ###########Panel Data Regression###############
+  ###############################################
+  
+  
+  
+  kirim_nama_variabel_panel_data_regression <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi Panel Data Regression pada Data IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    return(nama)
+    
+    
+    
+  }
+  
+  
+  
+  output$keterangan_aplikasi_panel_data_regression <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Panel Data Regression")
+    {
+      
+      h2("Application of Panel Data Regression in IDX Data", style="
+         font-family: 'cursive';
+         color: blue;
+         text-align:center
+         ")
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  
+  
+  output$buka_data_aplikasi_panel_data_regression <- DT::renderDT({
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Panel Data Regression")
+    {
+      dat <- data_seleksi_panel_data_regression()
+      print(dat)
+      
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  data_seleksi_panel_data_regression <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi Panel Data Regression pada Data IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    
+    
+    terpilih_variabel <- input$terpilih_variabel_aplikasi_panel_data_regression
+    
+    dat_kirim = dat[c(terpilih_variabel)]
+    
+    return(dat_kirim)
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  output$buka_checkbox_panel_data_regression <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Panel Data Regression")
+    {
+      # print("cek")
+      #print(cek)
+      #print(cek)
+      # uiOutput(session$ns("buka_topik_psikologi"))
+      
+      
+      
+      
+      
+      checkboxGroupInput(session$ns("terpilih_variabel_aplikasi_panel_data_regression"), 
+                         label="Select Variables:", 
+                         choices = c(kirim_nama_variabel_panel_data_regression()),
+                         selected=c("Journal or Conference", "Title", "Author(s)", "Year", "Software", "Method of Data Analysis",
+                                    "Link", "Normality Test", "Multicolinearity Test", "Heteroscedasticity Test", "Notes"), inline = TRUE)
+      
+      
+      
+      
+      
+      
+      
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }) #buka_pilih_topik
+  
+  
   
   
   
