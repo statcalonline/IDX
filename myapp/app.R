@@ -104,7 +104,8 @@ modul_IDX_ui <- function(id) {
       "Multivariate Analysis of Variance (MANOVA)",
       "Paired t-Test, Wilcoxon Test & Sign Test",
       "Pearson, Spearman & Kendall Correlation",
-      "Friedman Test"),
+      "Friedman Test",
+      "Dynamic Panel Model (Generalized Method of Moments Regression (GMM))"),
                        selected=c("Partial Least Squares Structural Equation Modeling (PLS-SEM)"), inline = TRUE),    
           
           
