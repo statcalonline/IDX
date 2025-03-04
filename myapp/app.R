@@ -129,6 +129,13 @@ modul_IDX_ui <- function(id) {
       uiOutput(ns("buka_checkbox_panel_data_regression")),
       DT::DTOutput(ns("buka_data_aplikasi_panel_data_regression")),
       
+      
+      
+      
+      uiOutput(ns("keterangan_aplikasi_GMM")),  
+      uiOutput(ns("buka_checkbox_GMM")),
+      DT::DTOutput(ns("buka_data_aplikasi_GMM")),
+      
           
           
           br()
@@ -752,6 +759,243 @@ modul_IDX_server <- function(input, output, session) {
     
     
   }) #buka_pilih_topik
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #############################
+  ###########GMM###############
+  #############################
+  
+  
+  
+  kirim_nama_variabel_GMM <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi GMM pada IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    return(nama)
+    
+    
+    
+  }
+  
+  
+  
+  output$keterangan_aplikasi_GMM <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Dynamic Panel Model (Generalized Method of Moments Regression (GMM))")
+    {
+      
+      h2("Application of Dynamic Panel Model (Generalized Method of Moments Regression (GMM)) in IDX Data", style="
+         font-family: 'cursive';
+         color: blue;
+         text-align:center
+         ")
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  
+  
+  output$buka_data_aplikasi_GMM <- DT::renderDT({
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Dynamic Panel Model (Generalized Method of Moments Regression (GMM))")
+    {
+      dat <- data_seleksi_GMM()
+      print(dat)
+      
+      
+    }
+    
+    
+  })
+  
+  
+  
+  
+  data_seleksi_GMM <- function()
+  {
+    
+    dat <- read_xlsx("www/Aplikasi GMM pada IDX.xlsx")
+    
+    dat <- as.data.frame(dat)
+    
+    nama <- colnames(dat)
+    
+    
+    
+    terpilih_variabel <- input$terpilih_variabel_aplikasi_GMM
+    
+    dat_kirim = dat[c(terpilih_variabel)]
+    
+    return(dat_kirim)
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  output$buka_checkbox_GMM <- renderUI({
+    
+    
+    cek <- input$pilih_metode
+    
+    if(cek == "Dynamic Panel Model (Generalized Method of Moments Regression (GMM))")
+    {
+      # print("cek")
+      #print(cek)
+      #print(cek)
+      # uiOutput(session$ns("buka_topik_psikologi"))
+      
+      
+      
+      
+      
+      checkboxGroupInput(session$ns("terpilih_variabel_aplikasi_GMM"), 
+                         label="Select Variables:", 
+                         choices = c(kirim_nama_variabel_GMM()),
+                         selected=c("Journal or Conference", "Title", "Author(s)", "Year", "Software", "Method of Data Analysis",
+                                    "Link", "Normality Test", "Multicolinearity Test", "Heteroscedasticity Test", "Notes"), inline = TRUE)
+      
+      
+      
+      
+      
+      
+      
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }) #buka_pilih_topik
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
